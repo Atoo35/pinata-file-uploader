@@ -18,11 +18,10 @@ export default function Home() {
 
   const queryPinataFiles = async () => {
     try {
-      const url = `${pinataConfig.root}/data/pinList`;
+      const url = `${pinataConfig.root}/data/pinList?status=pinned`;
       const response = await axios.get(url, pinataConfig);
-      const files = response.data.rows.filter(file => file.date_unpinned === null);
-      console.log(files)
-      setPinnedFiles(files);
+      console.log(response.data.rows)
+      setPinnedFiles(response.data.rows);
     } catch (error) {
       console.log(error)
     }
